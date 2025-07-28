@@ -17,37 +17,8 @@
 * ``wise_log`` - Level of the logging **(info by default)**
   * Values: ``err`` (only errors), ``warn`` errors and warns, ``info`` errs, warns, info, ``debug`` all levels
 
-## Usage
-```lua
-local database = wise.new("mysqloo", {
-  host = "127.0.0.1",
-  user = "root"
-  pass = "some_password",
-  dbname = "gmoddb",
-  port = 3306 -- optional, 3306 by default
-})
-
-local profiles = database:registerTable("PlayerProfiles")
-
----@type player Player
-function GM:LoadPlayer(player)
-  local steamid = player:SteamID64()
-
-  local co = coroutine.create(function()
-    local profile = profiles:findFirst({
-      where = {
-        steamid = steamid
-      }
-    })
-
-    if (istable(profile) && IsValid(player)) then
-      player:SetProfile(profile)
-    end
-  end)
-
-  coroutine.resume(co)
-end
-```
+## Documentation
+All documentation can be found on the [project's GitBook page](https://smokingplaya.gitbook.io/smokingplaya/wise-gmod-orm/whats-wise)
 
 ## To Do
 - [ ] PostgreSQL provider/support
